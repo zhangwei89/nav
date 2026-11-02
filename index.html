@@ -1,0 +1,1886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>拾径导航 - 精选网址与实用工具</title>
+  <meta name="description" content="简洁、极速、纯净的个人与工作网址导航站，精选优质网站、AI工具、学术研究与全球资讯，支持站内秒级实时筛选与多引擎搜索。">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><circle cx='12' cy='12' r='10'/><polygon points='16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76'/></svg>">
+  <style>
+    :root {
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-hover: #f1f5f9;
+      --surface-card: #ffffff;
+      --border: #e2e8f0;
+      --border-hover: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent-badge: #f1f5f9;
+      --header-bg: rgba(255, 255, 255, 0.86);
+      --card-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
+      --card-shadow-hover: 0 10px 18px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+      --sidebar-width: 220px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-xl: 20px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #111827;
+      --surface-hover: #1f293d;
+      --surface-card: #131c2e;
+      --border: #1e293b;
+      --border-hover: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+      --primary: #3b82f6;
+      --primary-hover: #60a5fa;
+      --primary-light: rgba(59, 130, 246, 0.15);
+      --accent-badge: #1e293b;
+      --header-bg: rgba(11, 15, 25, 0.88);
+      --card-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+      --card-shadow-hover: 0 12px 22px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      background: none;
+    }
+
+    input, select {
+      font-family: inherit;
+      outline: none;
+      border: none;
+    }
+
+    .app-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.25s;
+    }
+
+    .header-content {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #2563eb, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
+      flex-shrink: 0;
+    }
+
+    .brand-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--text-primary);
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .header-date-badge {
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+    }
+
+    @media (min-width: 768px) {
+      .header-date-badge {
+        display: flex;
+      }
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--surface-hover);
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .action-btn.btn-primary {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .action-btn.btn-primary:hover {
+      background: var(--primary-hover);
+      border-color: var(--primary-hover);
+    }
+
+    /* Main Container */
+    .main-layout {
+      max-width: 1360px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+      flex: 1;
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      display: none;
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 1024px) {
+      .sidebar-nav {
+        display: block;
+      }
+    }
+
+    .sidebar-sticky {
+      position: sticky;
+      top: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .sidebar-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      padding: 0.5rem 0.75rem;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.85rem;
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.18s ease;
+    }
+
+    .nav-link-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .nav-link svg {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+      opacity: 0.75;
+      transition: opacity 0.18s;
+    }
+
+    .nav-link:hover {
+      background: var(--surface-hover);
+      color: var(--text-primary);
+    }
+
+    .nav-link:hover svg {
+      opacity: 1;
+      color: var(--primary);
+    }
+
+    .nav-link.active {
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .nav-link.active svg {
+      opacity: 1;
+      color: var(--primary);
+    }
+
+    .nav-count {
+      font-size: 0.75rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+      background: var(--border);
+      color: var(--text-secondary);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .nav-link.active .nav-count {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--primary);
+    }
+
+    /* Content Area */
+    .content-area {
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* Search Section */
+    .search-section {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .search-headline {
+      margin-bottom: 0.5rem;
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+    }
+
+    .search-subline {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .search-card {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* Search Engine Tabs */
+    .engine-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .engine-tab {
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: all 0.2s ease;
+    }
+
+    .engine-tab:hover {
+      color: var(--text-primary);
+      border-color: var(--border-hover);
+    }
+
+    .engine-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.3);
+    }
+
+    /* Search Input Box */
+    .search-input-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 0.5rem 0.75rem 0.5rem 1.25rem;
+      box-shadow: var(--card-shadow);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .search-input-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px var(--primary-light), var(--card-shadow-hover);
+    }
+
+    .search-box-icon {
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .search-input {
+      flex: 1;
+      font-size: 1.05rem;
+      background: transparent;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .search-clear-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: all 0.15s;
+    }
+
+    .search-clear-btn:hover {
+      background: var(--border-hover);
+      color: var(--text-primary);
+    }
+
+    .kbd-shortcut {
+      display: none;
+      align-items: center;
+      padding: 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      border-radius: var(--radius-sm);
+      background: var(--surface-hover);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: monospace;
+    }
+
+    @media (min-width: 640px) {
+      .kbd-shortcut {
+        display: flex;
+      }
+    }
+
+    .search-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.6rem 1.25rem;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: var(--radius-lg);
+      transition: all 0.2s;
+    }
+
+    .search-submit-btn:hover {
+      background: var(--primary-hover);
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    }
+
+    /* Live Search Status Banner */
+    .search-status-bar {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 1rem;
+      margin-top: 0.75rem;
+      border-radius: var(--radius-md);
+      background: var(--primary-light);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      font-size: 0.85rem;
+      color: var(--primary);
+    }
+
+    /* Mobile Category Pills */
+    .mobile-category-bar {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+      scrollbar-width: none;
+    }
+
+    .mobile-category-bar::-webkit-scrollbar {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .mobile-category-bar {
+        display: none;
+      }
+    }
+
+    .mobile-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: 9999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .mobile-pill:hover, .mobile-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Category Section */
+    .category-section {
+      margin-bottom: 2.5rem;
+      scroll-margin-top: 80px;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .category-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .category-icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: var(--radius-sm);
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-icon-box svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .category-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .category-badge-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .cards-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* Card Item */
+    .site-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border-radius: var(--radius-lg);
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .site-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+
+    /* Favicon Container */
+    .card-icon-wrap {
+      width: 42px;
+      height: 42px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      background: var(--surface-hover);
+    }
+
+    .card-fav-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.2s;
+    }
+
+    .site-card:hover .card-fav-img {
+      transform: scale(1.08);
+    }
+
+    .card-avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1rem;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    .card-meta {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.35rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      transition: color 0.15s;
+    }
+
+    .site-card:hover .card-title {
+      color: var(--primary);
+    }
+
+    .card-arrow-icon {
+      opacity: 0;
+      color: var(--primary);
+      transition: all 0.2s;
+      transform: translate(-3px, 3px);
+      flex-shrink: 0;
+    }
+
+    .card-arrow-icon svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .site-card:hover .card-arrow-icon {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.3rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .card-bottom {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.5rem;
+      border-top: 1px dashed var(--border);
+    }
+
+    .card-domain {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      max-width: 140px;
+    }
+
+    .card-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-tag {
+      font-size: 0.7rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: var(--radius-sm);
+      background: var(--accent-badge);
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .card-copy-btn, .card-del-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: var(--radius-sm);
+      color: var(--text-muted);
+      transition: all 0.15s;
+    }
+
+    .card-copy-btn:hover {
+      background: var(--surface-hover);
+      color: var(--primary);
+    }
+
+    .card-del-btn:hover {
+      background: rgba(239, 68, 68, 0.15);
+      color: #ef4444;
+    }
+
+    .card-copy-btn svg, .card-del-btn svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    /* Add Card Placeholder */
+    .add-site-card {
+      border: 2px dashed var(--border);
+      background: transparent;
+      box-shadow: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+      border-radius: var(--radius-lg);
+      color: var(--text-muted);
+      transition: all 0.2s;
+      cursor: pointer;
+      gap: 0.5rem;
+    }
+
+    .add-site-card:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .add-site-card svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .add-site-card span {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    /* Empty state */
+    .no-results-box {
+      display: none;
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      border: 1px dashed var(--border);
+      margin-top: 1rem;
+    }
+
+    .no-results-box svg {
+      width: 48px;
+      height: 48px;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .no-results-box h3 {
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .no-results-box p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 480px;
+      background: var(--surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow-hover);
+      padding: 1.5rem;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .modal-close-btn {
+      color: var(--text-muted);
+      padding: 0.25rem;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .modal-close-btn:hover {
+      color: var(--text-primary);
+      background: var(--surface-hover);
+    }
+
+    .modal-body {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .form-input, .form-textarea {
+      width: 100%;
+      padding: 0.65rem 0.85rem;
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: border-color 0.15s;
+    }
+
+    .form-input:focus, .form-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-primary);
+      color: var(--bg);
+      padding: 0.65rem 1.25rem;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      z-index: 200;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toast-container.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position: fixed;
+      right: 1.5rem;
+      bottom: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 40;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .back-to-top:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      background: var(--surface);
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header class="site-header">
+      <div class="header-content">
+        <div class="brand-wrap">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>拾径导航</h1>
+            <span>简洁 · 极速 · 纯净导航</span>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="header-date-badge" id="currentDateBadge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span id="dateTextDisplay">加载中...</span>
+          </div>
+
+          <button class="action-btn" id="openAddModalBtn" title="添加我的收藏网址">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <span>添加</span>
+          </button>
+
+          <button class="action-btn" id="openDataModalBtn" title="备份与导出书签">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>备份</span>
+          </button>
+
+          <button class="action-btn" id="themeToggleBtn" title="切换暗黑/浅色模式">
+            <svg id="themeIconSun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            <svg id="themeIconMoon" style="display:none;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Layout -->
+    <main class="main-layout">
+      <!-- Desktop Sidebar -->
+      <aside class="sidebar-nav">
+        <nav class="sidebar-sticky" id="sidebarNav">
+          <div class="sidebar-title">分类直达</div>
+          <!-- Populated by JS -->
+        </nav>
+      </aside>
+
+      <!-- Content Area -->
+      <section class="content-area">
+        <!-- Hero & Search -->
+        <div class="search-section">
+          <h2 class="search-headline">发现好网站，一步直达</h2>
+          <p class="search-subline">精选常用网站、学术资源与 AI 工具，支持站内秒搜与多引擎搜索</p>
+
+          <div class="search-card">
+            <!-- Engine Tabs -->
+            <div class="engine-tabs" id="engineTabs">
+              <button class="engine-tab active" data-engine="local">🔍 站内秒搜</button>
+              <button class="engine-tab" data-engine="baidu">百度</button>
+              <button class="engine-tab" data-engine="google">Google</button>
+              <button class="engine-tab" data-engine="bing">Bing</button>
+              <button class="engine-tab" data-engine="metaso">秘塔 AI</button>
+              <button class="engine-tab" data-engine="github">GitHub</button>
+              <button class="engine-tab" data-engine="developer">开发者</button>
+              <button class="engine-tab" data-engine="douban">豆瓣</button>
+              <button class="engine-tab" data-engine="scholar">学术</button>
+            </div>
+
+            <!-- Input Box -->
+            <form id="searchForm" onsubmit="handleSearchSubmit(event)">
+              <div class="search-input-box">
+                <div class="search-box-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <input type="text" id="searchInput" class="search-input" placeholder="在 87+ 精选网站中秒搜..." autocomplete="off">
+                <button type="button" class="search-clear-btn" id="searchClearBtn" title="清空搜索">✕</button>
+                <div class="kbd-shortcut" title="按快捷键快速定位搜索框">/</div>
+                <button type="submit" class="search-submit-btn" id="searchSubmitBtn">搜索</button>
+              </div>
+            </form>
+
+            <div class="search-status-bar" id="searchStatusBar">
+              <span id="searchResultCount">正在筛选...</span>
+              <button type="button" onclick="clearSearchFilter()" style="color:var(--primary); font-weight:600; cursor:pointer;">清除筛选</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Category Pills -->
+        <div class="mobile-category-bar" id="mobileCategoryBar">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- No Results Box -->
+        <div class="no-results-box" id="noResultsBox">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <h3>未找到匹配的网站</h3>
+          <p id="noResultsText">尝试更换搜索关键词，或回车通过搜索引擎搜索全网</p>
+          <button type="button" class="action-btn btn-primary" onclick="searchCurrentInEngine()">使用当前搜索引擎搜全网</button>
+        </div>
+
+        <!-- Category Sections Container -->
+        <div id="categoriesContainer">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p>© 2026 拾径导航 · 简洁 · 纯净 · 高效直达</p>
+        <div class="footer-links">
+          <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">回到顶部</a>
+          <span>·</span>
+          <a href="https://github.com/zhangwei89" target="_blank" rel="noopener noreferrer">GitHub 主页</a>
+          <span>·</span>
+          <a href="javascript:void(0)" onclick="openDataModal()">备份与还原</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTopBtn" title="返回顶部" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastBox">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="toastMsg">已复制链接</span>
+    </div>
+
+    <!-- Modal: Add Bookmark -->
+    <div class="modal-overlay" id="addBookmarkModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">添加快捷网址</h3>
+          <button class="modal-close-btn" onclick="closeAddModal()">✕</button>
+        </div>
+        <form id="addBookmarkForm" onsubmit="handleAddBookmarkSubmit(event)">
+          <div class="modal-body">
+            <div class="form-group">
+              <label class="form-label">网站名称 *</label>
+              <input type="text" id="bmTitle" class="form-input" placeholder="例如：GitHub" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">网址链接 *</label>
+              <input type="url" id="bmUrl" class="form-input" placeholder="https://..." required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">分类</label>
+              <select id="bmCategory" class="form-input">
+                <option value="custom">📌 我的收藏</option>
+                <option value="featured">🌟 综合推荐</option>
+                <option value="common">⚡ 常用服务</option>
+                <option value="academic">🎓 学术研究</option>
+                <option value="tools">🛠️ AI 与实用工具</option>
+                <option value="video">🎬 影音娱乐</option>
+                <option value="news">📰 全球资讯与新闻</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">简短描述</label>
+              <input type="text" id="bmDesc" class="form-input" placeholder="例如：代码托管与协作平台">
+            </div>
+            <div class="form-group">
+              <label class="form-label">标签</label>
+              <input type="text" id="bmTag" class="form-input" placeholder="例如：开发 / 常用">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="action-btn" onclick="closeAddModal()">取消</button>
+            <button type="submit" class="action-btn btn-primary">保存网站</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal: Data Management (Backup / Restore) -->
+    <div class="modal-overlay" id="dataModal">
+      <div class="modal-box">
+        <div class="modal-header">
+          <h3 class="modal-title">书签备份与管理</h3>
+          <button class="modal-close-btn" onclick="closeDataModal()">✕</button>
+        </div>
+        <div class="modal-body">
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
+            你可以将当前所有书签（包括自定义添加的网址）导出为 JSON 文件进行本地备份，或导入已有备份进行恢复。
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:0.75rem; margin-top:0.5rem;">
+            <button type="button" class="action-btn btn-primary" onclick="exportDataToJson()" style="justify-content:center; padding:0.65rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              导出当前配置为 JSON 文件
+            </button>
+
+            <label class="action-btn" style="justify-content:center; padding:0.65rem; cursor:pointer;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              导入备份 JSON 文件
+              <input type="file" id="importJsonFileInput" accept=".json" onchange="importDataFromJson(event)" style="display:none;">
+            </label>
+
+            <button type="button" class="action-btn" onclick="resetToDefaultData()" style="justify-content:center; padding:0.65rem; color:#ef4444; border-color:rgba(239,68,68,0.3);">
+              重置为初始预设书签
+            </button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="action-btn" onclick="closeDataModal()">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Initial Seed Data
+    const INITIAL_CATEGORIES = [{"id":"custom","title":"我的收藏","enTitle":"Custom Bookmarks","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/></svg>","isCustom":true,"items":[]},{"id":"featured","origId":"default","title":"综合推荐","enTitle":"Featured & General","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z\"/></svg>","items":[{"title":"Science News","url":"https://news.sciencealert.com/","desc":"全球科学前沿动态与权威科学快讯","tag":"资讯","domain":"news.sciencealert.com","initial":"SC","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"极简热榜","url":"https://rebang.open2hub.com/","desc":"今日全网各大平台热门资讯实时聚合","tag":"热榜","domain":"rebang.open2hub.com","initial":"极","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Trello 看板","url":"https://trello.com/b/pfwnbnCD/work","desc":"敏捷项目协同与工作任务看板","tag":"办公","domain":"trello.com","initial":"TR","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"X (Twitter)","url":"https://x.com/home","desc":"全球时事动态与知名创作者社交网络","tag":"社交","domain":"x.com","initial":"X ","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"喷嚏网","url":"https://www.dapenti.com/blog/index.asp","desc":"铂程斋图卦与精选网络文摘","tag":"文摘","domain":"www.dapenti.com","initial":"喷","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"知乎日报","url":"https://tophub.today/n/KMZd7VOvrO","desc":"知乎全网优质精选深度好文汇总","tag":"深度","domain":"tophub.today","initial":"知","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"ReadMedium","url":"https://readmedium.com/","desc":"Medium 优质付费文章免限制阅读工具","tag":"阅读","domain":"readmedium.com","initial":"RE","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"Medium","url":"https://medium.com/","desc":"全球知名深度文章与高品质写作社区","tag":"博客","domain":"medium.com","initial":"ME","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"微博热搜榜","url":"https://s.weibo.com/top/summary?cate=realtimehot","desc":"国内实时社交热点与热搜事件风向标","tag":"热搜","domain":"s.weibo.com","initial":"微","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"「ONE · 一个」","url":"https://wufazhuce.com/","desc":"韩寒主编，复杂世界里一个就够了","tag":"文艺","domain":"wufazhuce.com","initial":"ON","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"谷歌搜索","url":"https://www.google.com/","desc":"全球权威搜索引擎，海量网页精准检索","tag":"搜索","domain":"www.google.com","initial":"谷","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"科技头条","url":"https://tophub.today/c/tech","desc":"全网科技圈热点、创投动态与前沿观察","tag":"科技","domain":"tophub.today","initial":"科","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"flomo 浮墨笔记","url":"https://v.flomoapp.com/mine","desc":"极简卡片式笔记，持续记录日常灵感","tag":"笔记","domain":"v.flomoapp.com","initial":"FL","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"},{"title":"东方财富网","url":"https://quote.eastmoney.com/zixuan/?from=data","desc":"行情自选股、财经资讯与专业金融数据","tag":"理财","domain":"quote.eastmoney.com","initial":"东","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"果汁排行榜","url":"http://guozhivip.com/rank/index.html","desc":"互联网全网各类流行榜单与热门风向大全","tag":"排行","domain":"guozhivip.com","initial":"果","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"在线阅读","url":"http://45.63.0.95:8383/","desc":"私人在线书籍与多格式阅读服务","tag":"书架","domain":"45.63.0.95","initial":"在","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"Reddit","url":"https://www.reddit.com/r/all/","desc":"全球网民聚集的兴趣社群与讨论中心","tag":"社区","domain":"www.reddit.com","initial":"RE","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"Omnivore","url":"https://omnivore.app/home","desc":"开源稍后读、文章划线与离线书签工具","tag":"收藏","domain":"omnivore.app","initial":"OM","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"倍可亲","url":"https://www.backchina.com/index.php?mobile=2","desc":"海外华人综合中文社区与时事资讯","tag":"华人","domain":"www.backchina.com","initial":"倍","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"付费墙破解","url":"https://paywallbuster.com","desc":"绕过新闻媒体与学术网站付费阅读限制","tag":"工具","domain":"paywallbuster.com","initial":"付","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"抽屉新热榜","url":"https://m.ichouti.cn/hot/new","desc":"聚合网民精选分享的高热度趣味新闻","tag":"热点","domain":"m.ichouti.cn","initial":"抽","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"TED 演讲","url":"https://www.ted.com/","desc":"传播有价值的思想，汇集全球各领域思想者","tag":"演讲","domain":"www.ted.com","initial":"TE","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"80楼网赚","url":"https://80lou.cn/","desc":"互联网创业、副业项目探讨与变现思路","tag":"创业","domain":"80lou.cn","initial":"8","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"Startups 创业","url":"https://www.reddit.com/r/startups/","desc":"Reddit 全球独立开发者与早期创业者交流","tag":"独立开发","domain":"www.reddit.com","initial":"ST","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"}]},{"id":"common","origId":"common","title":"常用服务","enTitle":"Daily & Work Services","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6\"/></svg>","items":[{"title":"Vultr 控制台","url":"https://my.vultr.com/","desc":"全球高性能云主机与 VPS 服务器管理","tag":"云服务","domain":"my.vultr.com","initial":"VU","bg":"linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"},{"title":"Cloudflare","url":"https://dash.cloudflare.com/login","desc":"全球 CDN 加速、智能 DNS 解析与网络安全","tag":"CDN","domain":"dash.cloudflare.com","initial":"CL","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"微蓝支付","url":"https://cp.weilan.zone/member/login/","desc":"聚合在线结算通道与商户会员服务后台","tag":"支付","domain":"cp.weilan.zone","initial":"微","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"},{"title":"NameSilo","url":"https://www.namesilo.com/login","desc":"性价比极高的国际域名注册与解析托管","tag":"域名","domain":"www.namesilo.com","initial":"NA","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"阮一峰科技周刊","url":"https://github.com/ruanyf/weekly","desc":"科技爱好者周刊，每周五发布优质内容","tag":"周刊","domain":"github.com","initial":"阮","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"福利吧","url":"https://fuliba2023.net/","desc":"老牌实用网络福利与技术干货分享站","tag":"资源","domain":"fuliba2023.net","initial":"福","bg":"linear-gradient(135deg, #10b981 0%, #047857 100%)"},{"title":"一席","url":"https://yixi.tv/#/speech","desc":"听君一席话，国内高质量深度现场演讲","tag":"演讲","domain":"yixi.tv","initial":"一","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"Dropbox","url":"https://www.dropbox.com/home","desc":"跨设备云存储与文件无缝协作同步服务","tag":"网盘","domain":"www.dropbox.com","initial":"DR","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"wnflb 资讯","url":"https://www.wnflb2023.com/","desc":"网络优质资讯与综合实用资源分享","tag":"资讯","domain":"www.wnflb2023.com","initial":"WN","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"RVHelp 远控","url":"https://rvhelp.cn/login","desc":"远程桌面运维控制与快速连接服务","tag":"远控","domain":"rvhelp.cn","initial":"RV","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"}]},{"id":"academic","origId":"academic","title":"学术研究","enTitle":"Academic & Research","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z\"/><path d=\"M6 6h10M6 10h10\"/></svg>","items":[{"title":"Sci-Hub 论文检索","url":"https://tool.yovisun.com/scihub/","desc":"免费开源学术论文直接下载可用镜像导航","tag":"论文","domain":"tool.yovisun.com","initial":"SC","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"思谋学术","url":"https://ac.scmor.com/","desc":"Google Scholar 谷歌学术国内可用稳定镜像","tag":"文献","domain":"ac.scmor.com","initial":"思","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Z-Library 镜像","url":"https://zlib.ch/","desc":"全球最大数字图书库，海量专著电子书下载","tag":"图书","domain":"zlib.ch","initial":"Z-","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"Q博士图书馆","url":"http://lib.qboshi.net/","desc":"学术文献资源整合与多数据库联合检索","tag":"检索","domain":"lib.qboshi.net","initial":"Q博","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"Library Genesis","url":"https://www.libgen.is/","desc":"全球学术论文与专著图书开放检索下载站","tag":"科研","domain":"www.libgen.is","initial":"LI","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"全国图书馆联盟","url":"http://www.ucdrs.superlib.net/","desc":"全国图书馆参考咨询联盟文献传递通道","tag":"官方","domain":"www.ucdrs.superlib.net","initial":"全","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Google 学术","url":"https://scholar.google.com/","desc":"全球覆盖最全的学术期刊与会议论文检索","tag":"学术","domain":"scholar.google.com","initial":"GO","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"安娜的档案","url":"https://annas-archive.li/","desc":"多源合一的图书、论文与科研资料超级引擎","tag":"电子书","domain":"annas-archive.li","initial":"安","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"90图书馆","url":"http://www.90tsg.com/","desc":"高校专业文献资源下载与学术通道","tag":"高校","domain":"www.90tsg.com","initial":"9","bg":"linear-gradient(135deg, #64748b 0%, #334155 100%)"},{"title":"AMiner 科技情报","url":"https://www.aminer.cn/","desc":"清华团队打造的全球科研学者与学术图谱","tag":"图谱","domain":"www.aminer.cn","initial":"AM","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"文献云","url":"https://www.wxtsg.top/","desc":"知网、万方、维普等中文期刊论文快速获取","tag":"中文文献","domain":"www.wxtsg.top","initial":"文","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"}]},{"id":"tools","origId":"tools","title":"AI 与实用工具","enTitle":"AI & Productivity Tools","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"/></svg>","items":[{"title":"EPUB 在线阅读","url":"https://epub-reader.online","desc":"浏览器直接打开并排版阅读本地 EPUB 电子书","tag":"阅读器","domain":"epub-reader.online","initial":"EP","bg":"linear-gradient(135deg, #64748b 0%, #334155 100%)"},{"title":"ReadifyAI 智能阅读","url":"https://app.readifyai.com/library","desc":"AI 赋能的深度文献解析与智能书架阅读","tag":"AI阅读","domain":"app.readifyai.com","initial":"RE","bg":"linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"},{"title":"Miku 工具集","url":"https://tools.miku.ac/","desc":"极简实用的综合在线开发者与日常小工具箱","tag":"小工具","domain":"tools.miku.ac","initial":"MI","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"You.com Chat","url":"https://you.com/","desc":"结合多模态与即时网络检索的 AI 问答平台","tag":"AI搜索","domain":"you.com","initial":"YO","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"115生活","url":"https://115.com/","desc":"115 个人大容量云存储与极速离线下载服务","tag":"云盘","domain":"115.com","initial":"1","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"423软件下载","url":"https://www.423down.com/","desc":"良心精简去广告绿色纯净 Windows 软件分享","tag":"软件","domain":"www.423down.com","initial":"4","bg":"linear-gradient(135deg, #64748b 0%, #334155 100%)"},{"title":"殁漂遥","url":"https://www.mpyit.com/","desc":"老牌精选电脑实用软件与系统实用优化","tag":"精品软件","domain":"www.mpyit.com","initial":"殁","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Google Gemini","url":"https://gemini.google.com/app","desc":"谷歌原生多模态强大对话与推理模型","tag":"AI","domain":"gemini.google.com","initial":"GO","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Perplexity AI","url":"https://www.perplexity.ai/","desc":"实时联网引用信源的智能研究型搜索引擎","tag":"AI搜索","domain":"www.perplexity.ai","initial":"PE","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"},{"title":"Poe 聚合平台","url":"https://poe.com/","desc":"Quora 旗下多模型智能 AI 机器人互动聚合","tag":"多模型","domain":"poe.com","initial":"PO","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"Kimi 文档分析","url":"https://kimi.moonshot.cn/","desc":"月之暗面超长文本解析与研报提炼助手","tag":"长文本","domain":"kimi.moonshot.cn","initial":"KI","bg":"linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"},{"title":"Neat Reader","url":"https://www.neat-reader.cn/","desc":"设计精良、跨平台同步的专业 EPUB 阅读器","tag":"阅读器","domain":"www.neat-reader.cn","initial":"NE","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"ChatGPT","url":"https://chatgpt.com/","desc":"OpenAI 旗舰通用大模型，智能对话与代码辅助","tag":"AI对话","domain":"chatgpt.com","initial":"CH","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"RuTracker","url":"https://rutracker.org/","desc":"俄罗斯最大资源种子库，音视频与开源素材","tag":"种子库","domain":"rutracker.org","initial":"RU","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"Grok","url":"https://grok.com/","desc":"xAI 旗下实时智能搜索与幽默互动助手","tag":"AI","domain":"grok.com","initial":"GR","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"华为小艺 (DeepSeek)","url":"https://xiaoyi.huawei.com/","desc":"华为小艺深度赋能的 DeepSeek 智能体验端","tag":"国产AI","domain":"xiaoyi.huawei.com","initial":"华","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"问小白 (DeepSeek)","url":"https://www.wenxiaobai.com/","desc":"满血版 DeepSeek R1 智能模型推理体验","tag":"R1推理","domain":"www.wenxiaobai.com","initial":"问","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"秘塔 AI 搜索","url":"https://metaso.cn/","desc":"国内领先深度学术级大纲脑图结构化搜索引擎","tag":"研报级","domain":"metaso.cn","initial":"秘","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"豆包","url":"https://www.doubao.com/","desc":"字节跳动全能 AI 伙伴，高效答疑与文案创作","tag":"AI助手","domain":"www.doubao.com","initial":"豆","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"}]},{"id":"video","origId":"video","title":"影音娱乐","enTitle":"Media & Entertainment","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect width=\"20\" height=\"15\" x=\"2\" y=\"7\" rx=\"2\" ry=\"2\"/><polyline points=\"17 2 12 7 7 2\"/></svg>","items":[{"title":"QS导航","url":"https://theporndude.com/zh","desc":"成人站点精选指引与评级索引","tag":"索引","domain":"theporndude.com","initial":"QS","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"MAV","url":"https://missav.live/cn","desc":"在线高清流媒体视频播放与检索","tag":"流媒体","domain":"missav.live","initial":"MA","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"JBus","url":"https://www.javbus.com/","desc":"影视资源、磁力链接与演员分类数据库","tag":"数据库","domain":"www.javbus.com","initial":"JB","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"},{"title":"BTSOW","url":"https://btsow.com/tags","desc":"番号标签与磁力 Hash 检索资源索引","tag":"磁力搜索","domain":"btsow.com","initial":"BT","bg":"linear-gradient(135deg, #f43f5e 0%, #be123c 100%)"},{"title":"IMDb 电影资料库","url":"https://m.imdb.com/","desc":"全球权威电影、电视剧与演职员评分资料库","tag":"影评","domain":"m.imdb.com","initial":"IM","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"Ja.tv","url":"https://jable.tv/","desc":"高清流媒体视频在线观看与推荐","tag":"视频","domain":"jable.tv","initial":"JA","bg":"linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)"},{"title":"豆瓣电影","url":"https://movie.douban.com/","desc":"电影评分排行榜、深度影评与观影记录交流","tag":"豆瓣","domain":"movie.douban.com","initial":"豆","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"HS 仓库","url":"http://hsck.net","desc":"影视资源分享与交流社区导航","tag":"社区","domain":"hsck.net","initial":"HS","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"TokLib","url":"https://tokyolib.com/","desc":"综合音视频、电子图书与数字多媒体库","tag":"音视频","domain":"tokyolib.com","initial":"TO","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"}]},{"id":"news","origId":"news","title":"全球资讯与新闻","enTitle":"Global News & Media","icon":"<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2\"/><path d=\"M18 14h-8M15 18h-5M10 6h8v4h-8V6Z\"/></svg>","items":[{"title":"经济学人","url":"https://www.economist.com/weeklyedition","desc":"The Economist 全球权威政经与商业深度周刊","tag":"政经","domain":"www.economist.com","initial":"经","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"CNN News","url":"https://edition.cnn.com/","desc":"美国及国际 24 小时即时突发新闻报道","tag":"即时","domain":"edition.cnn.com","initial":"CN","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"Yahoo News","url":"https://news.yahoo.com/","desc":"雅虎国际新闻、宏观经济与科技时事","tag":"国际","domain":"news.yahoo.com","initial":"YA","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"FT 中文网","url":"https://www.ftchinese.com/","desc":"英国金融时报权威中文商业金融长文与分析","tag":"商业","domain":"www.ftchinese.com","initial":"FT","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"路透中文网","url":"https://www.reuters.com/","desc":"路透社全球财经资讯、汇率与宏观经济电讯","tag":"路透","domain":"www.reuters.com","initial":"路","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"华尔街日报","url":"https://cn.wsj.com/","desc":"WSJ 全球金融市场观察与国际宏观趋势分析","tag":"财经","domain":"cn.wsj.com","initial":"华","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"BBC 中文网","url":"https://www.bbc.com/zhongwen/simp","desc":"英国广播公司权威、深度的国际热点报道","tag":"国际深度","domain":"www.bbc.com","initial":"BB","bg":"linear-gradient(135deg, #f59e0b 0%, #d97706 100%)"},{"title":"纽约时报中文","url":"https://cn.nytimes.com/","desc":"The New York Times 中文特稿与全球政经","tag":"纽时","domain":"cn.nytimes.com","initial":"纽","bg":"linear-gradient(135deg, #6366f1 0%, #4338ca 100%)"},{"title":"ChinaNewsX","url":"https://www.chinanewsx.com/","desc":"多角度观察中国与国际动态的中文资讯平台","tag":"时事","domain":"www.chinanewsx.com","initial":"CH","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"卫报","url":"https://www.theguardian.com/","desc":"The Guardian 英国百年历史独立调查新闻大报","tag":"独立调查","domain":"www.theguardian.com","initial":"卫","bg":"linear-gradient(135deg, #ec4899 0%, #be185d 100%)"},{"title":"VOA 中文","url":"https://www.voachinese.com/","desc":"美国之音中文时事观察、深度报道与观点探讨","tag":"时政","domain":"www.voachinese.com","initial":"VO","bg":"linear-gradient(135deg, #06b6d4 0%, #0e7490 100%)"},{"title":"翻墙者新闻聚合","url":"https://www.fanqiangzhe.com/news/","desc":"全网多渠道信源热点新闻即时聚合播报","tag":"聚合","domain":"www.fanqiangzhe.com","initial":"翻","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"},{"title":"ScienceAlert","url":"https://www.sciencealert.com/","desc":"全球重大前沿科学发现、太空探索与科普","tag":"科学","domain":"www.sciencealert.com","initial":"SC","bg":"linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)"},{"title":"华盛顿邮报快照","url":"https://archive.is/nXCqk","desc":"华盛顿邮报精选深度调查报道历史归档快照","tag":"归档","domain":"archive.is","initial":"华","bg":"linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)"}]}];
+
+    const ENGINES = {
+      local: { name: '站内秒搜', placeholder: '在 87+ 精选网站中秒搜...' },
+      baidu: { name: '百度', url: 'https://www.baidu.com/s?wd=', placeholder: '在 百度 中搜索...' },
+      google: { name: 'Google', url: 'https://www.google.com/search?q=', placeholder: '在 Google 中搜索...' },
+      bing: { name: 'Bing', url: 'https://cn.bing.com/search?q=', placeholder: '在 必应 中搜索...' },
+      metaso: { name: '秘塔 AI', url: 'https://metaso.cn/?q=', placeholder: '在 秘塔 AI 搜索深度研报...' },
+      github: { name: 'GitHub', url: 'https://github.com/search?q=', placeholder: '在 GitHub 搜索开源代码/项目...' },
+      developer: { name: '开发者', url: 'https://kaifa.baidu.com/searchPage?wd=', placeholder: '在 开发者搜索 中检索技术问答...' },
+      douban: { name: '豆瓣', url: 'https://www.douban.com/search?q=', placeholder: '在 豆瓣 搜索电影、书籍、音乐...' },
+      scholar: { name: '学术', url: 'https://scholar.google.com/scholar?q=', placeholder: '在 谷歌学术 检索前沿论文...' }
+    };
+
+    let currentEngine = 'local';
+    let categories = [];
+
+    // Local Storage Keys
+    const STORAGE_KEY_DATA = 'shijing_nav_data_v2';
+    const STORAGE_KEY_THEME = 'shijing_nav_theme';
+
+    // Theme Management
+    function initTheme() {
+      const savedTheme = localStorage.getItem(STORAGE_KEY_THEME);
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+      setTheme(theme);
+    }
+
+    function setTheme(theme) {
+      document.body.setAttribute('data-theme', theme);
+      localStorage.setItem(STORAGE_KEY_THEME, theme);
+      const sun = document.getElementById('themeIconSun');
+      const moon = document.getElementById('themeIconMoon');
+      if (theme === 'dark') {
+        sun.style.display = 'inline-block';
+        moon.style.display = 'none';
+      } else {
+        sun.style.display = 'none';
+        moon.style.display = 'inline-block';
+      }
+    }
+
+    function toggleTheme() {
+      const current = document.body.getAttribute('data-theme') || 'light';
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Date & Greeting
+    function updateDateGreeting() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const days = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+      const day = days[now.getDay()];
+      const hour = now.getHours();
+      let greeting = '你好';
+      if (hour >= 5 && hour < 12) greeting = '早上好';
+      else if (hour >= 12 && hour < 14) greeting = '中午好';
+      else if (hour >= 14 && hour < 18) greeting = '下午好';
+      else greeting = '晚上好';
+
+      const el = document.getElementById('dateTextDisplay');
+      if (el) {
+        el.textContent = `${month}月${date}日 ${day} · ${greeting}`;
+      }
+    }
+
+    // Load & Save Data
+    function loadData() {
+      try {
+        const stored = localStorage.getItem(STORAGE_KEY_DATA);
+        if (stored) {
+          categories = JSON.parse(stored);
+        } else {
+          categories = JSON.parse(JSON.stringify(INITIAL_CATEGORIES));
+        }
+      } catch (e) {
+        categories = JSON.parse(JSON.stringify(INITIAL_CATEGORIES));
+      }
+    }
+
+    function saveData() {
+      try {
+        localStorage.setItem(STORAGE_KEY_DATA, JSON.stringify(categories));
+      } catch (e) {
+        console.error('Failed to save data to localStorage', e);
+      }
+    }
+
+    // Render Navigation & Content
+    function renderApp() {
+      renderSidebar();
+      renderMobileBar();
+      renderSections();
+    }
+
+    function renderSidebar() {
+      const nav = document.getElementById('sidebarNav');
+      let html = '<div class="sidebar-title">分类直达</div>';
+      
+      categories.forEach(cat => {
+        const count = cat.items ? cat.items.length : 0;
+        if (cat.id === 'custom' && count === 0) return;
+        html += `
+          <a href="#cat-${cat.id}" class="nav-link" data-cat-id="${cat.id}">
+            <div class="nav-link-left">
+              ${cat.icon}
+              <span>${cat.title}</span>
+            </div>
+            <span class="nav-count">${count}</span>
+          </a>
+        `;
+      });
+
+      nav.innerHTML = html;
+      bindSidebarScrollSpy();
+    }
+
+    function renderMobileBar() {
+      const bar = document.getElementById('mobileCategoryBar');
+      let html = '';
+      categories.forEach(cat => {
+        const count = cat.items ? cat.items.length : 0;
+        if (cat.id === 'custom' && count === 0) return;
+        html += `
+          <a href="#cat-${cat.id}" class="mobile-pill">
+            <span>${cat.title}</span>
+            <span style="opacity:0.7; font-size:0.75rem;">(${count})</span>
+          </a>
+        `;
+      });
+      bar.innerHTML = html;
+    }
+
+    function getDomain(url) {
+      try {
+        return new URL(url).hostname;
+      } catch(e) {
+        return url;
+      }
+    }
+
+    function renderSections() {
+      const container = document.getElementById('categoriesContainer');
+      let html = '';
+
+      categories.forEach(cat => {
+        const items = cat.items || [];
+        const isCustom = cat.id === 'custom';
+        if (isCustom && items.length === 0) return; // Hide empty custom section
+
+        html += `
+          <section class="category-section" id="cat-${cat.id}" data-cat-id="${cat.id}">
+            <div class="category-header">
+              <div class="category-title-wrap">
+                <div class="category-icon-box">${cat.icon}</div>
+                <h3 class="category-title">${cat.title}</h3>
+                <span class="category-badge-count">${items.length} 个站点</span>
+              </div>
+            </div>
+            <div class="cards-grid" id="grid-${cat.id}">
+        `;
+
+        // Render Cards
+        items.forEach((item, index) => {
+          const domain = item.domain || getDomain(item.url);
+          const initial = item.initial || item.title.slice(0, 1).toUpperCase();
+          const bg = item.bg || 'linear-gradient(135deg, #2563eb, #38bdf8)';
+          const tag = item.tag || '网址';
+
+          // Favicon source with automatic fallback to gradient initial badge
+          const favSrc = `https://api.iowen.cn/favicon/${domain}.png`;
+
+          html += `
+            <div class="site-card" data-title="${encodeURIComponent(item.title)}" data-desc="${encodeURIComponent(item.desc || '')}" data-url="${encodeURIComponent(item.url)}" data-tag="${encodeURIComponent(tag)}" onclick="handleCardClick(event, '${item.url}')">
+              <div class="card-top">
+                <div class="card-icon-wrap">
+                  <img class="card-fav-img" src="${favSrc}" alt="${item.title}" loading="lazy" onerror="handleFavError(this)">
+                  <div class="card-avatar-fallback" style="background:${bg};">${initial}</div>
+                </div>
+                <div class="card-meta">
+                  <div class="card-title-row">
+                    <span class="card-title" title="${item.title}">${item.title}</span>
+                    <span class="card-arrow-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                    </span>
+                  </div>
+                  <div class="card-domain">${domain}</div>
+                </div>
+              </div>
+              <div class="card-desc" title="${item.desc || item.title}">${item.desc || '便捷直达常用网站与实用工具'}</div>
+              <div class="card-bottom">
+                <span class="card-tag">${tag}</span>
+                <div class="card-actions-row">
+                  <button type="button" class="card-copy-btn" title="复制网址" onclick="copyCardUrl(event, '${item.url}')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                  ${isCustom ? `
+                    <button type="button" class="card-del-btn" title="删除书签" onclick="deleteCustomBookmark(event, ${index})">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        if (isCustom) {
+          html += `
+            <div class="add-site-card" onclick="openAddModal('custom')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              <span>＋ 添加我的快捷网址</span>
+            </div>
+          `;
+        }
+
+        html += `
+            </div>
+          </section>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    // Favicon Fallback Handler
+    function handleFavError(img) {
+      img.style.display = 'none';
+      const fallback = img.nextElementSibling;
+      if (fallback) {
+        fallback.style.display = 'flex';
+      }
+    }
+
+    // Card Click & Copy
+    function handleCardClick(e, url) {
+      if (e.target.closest('.card-copy-btn') || e.target.closest('.card-del-btn')) {
+        return;
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    function copyCardUrl(e, url) {
+      e.stopPropagation();
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('已复制网址到剪贴板！');
+      }).catch(() => {
+        const input = document.createElement('input');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        showToast('已复制网址到剪贴板！');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toastBox');
+      const text = document.getElementById('toastMsg');
+      text.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    // Search Engine Handling
+    function initSearch() {
+      const tabs = document.querySelectorAll('.engine-tab');
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('searchClearBtn');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          currentEngine = tab.getAttribute('data-engine');
+          input.placeholder = ENGINES[currentEngine].placeholder;
+          input.focus();
+
+          if (currentEngine === 'local') {
+            applyLocalFilter(input.value.trim());
+          } else {
+            clearSearchFilterVisuals();
+          }
+        });
+      });
+
+      input.addEventListener('input', (e) => {
+        const val = e.target.value.trim();
+        clearBtn.style.display = val ? 'flex' : 'none';
+        if (currentEngine === 'local') {
+          applyLocalFilter(val);
+        }
+      });
+
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
+        clearBtn.style.display = 'none';
+        input.focus();
+        if (currentEngine === 'local') {
+          applyLocalFilter('');
+        }
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== input) {
+          e.preventDefault();
+          input.focus();
+          input.select();
+        } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          input.focus();
+          input.select();
+        } else if (e.key === 'Escape' && document.activeElement === input) {
+          input.value = '';
+          clearBtn.style.display = 'none';
+          input.blur();
+          applyLocalFilter('');
+        }
+      });
+    }
+
+    function handleSearchSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('searchInput');
+      const query = input.value.trim();
+      if (!query) return;
+
+      if (currentEngine === 'local') {
+        applyLocalFilter(query);
+      } else {
+        const engine = ENGINES[currentEngine];
+        if (engine && engine.url) {
+          window.open(engine.url + encodeURIComponent(query), '_blank', 'noopener,noreferrer');
+        }
+      }
+    }
+
+    function searchCurrentInEngine() {
+      const input = document.getElementById('searchInput');
+      const query = input.value.trim();
+      if (!query) return;
+      const targetEngine = currentEngine === 'local' ? 'baidu' : currentEngine;
+      const engine = ENGINES[targetEngine];
+      window.open(engine.url + encodeURIComponent(query), '_blank', 'noopener,noreferrer');
+    }
+
+    // In-Site Filter
+    function applyLocalFilter(keyword) {
+      const cards = document.querySelectorAll('.site-card');
+      const sections = document.querySelectorAll('.category-section');
+      const statusBar = document.getElementById('searchStatusBar');
+      const countEl = document.getElementById('searchResultCount');
+      const noResultsBox = document.getElementById('noResultsBox');
+      const noResultsText = document.getElementById('noResultsText');
+
+      if (!keyword) {
+        cards.forEach(c => c.style.display = 'flex');
+        sections.forEach(s => s.style.display = 'block');
+        statusBar.style.display = 'none';
+        noResultsBox.style.display = 'none';
+        return;
+      }
+
+      const lower = keyword.toLowerCase();
+      let matchTotal = 0;
+
+      sections.forEach(section => {
+        let sectionMatches = 0;
+        const sectionCards = section.querySelectorAll('.site-card');
+
+        sectionCards.forEach(card => {
+          const title = decodeURIComponent(card.getAttribute('data-title') || '').toLowerCase();
+          const desc = decodeURIComponent(card.getAttribute('data-desc') || '').toLowerCase();
+          const url = decodeURIComponent(card.getAttribute('data-url') || '').toLowerCase();
+          const tag = decodeURIComponent(card.getAttribute('data-tag') || '').toLowerCase();
+
+          if (title.includes(lower) || desc.includes(lower) || url.includes(lower) || tag.includes(lower)) {
+            card.style.display = 'flex';
+            sectionMatches++;
+            matchTotal++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (sectionMatches === 0) {
+          section.style.display = 'none';
+        } else {
+          section.style.display = 'block';
+        }
+      });
+
+      statusBar.style.display = 'flex';
+      countEl.textContent = `找到 ${matchTotal} 个匹配网站`;
+
+      if (matchTotal === 0) {
+        noResultsBox.style.display = 'block';
+        noResultsText.textContent = `未在站内找到与「${keyword}」匹配的站点，按回车可切换至搜索引擎全网搜索`;
+      } else {
+        noResultsBox.style.display = 'none';
+      }
+    }
+
+    function clearSearchFilter() {
+      const input = document.getElementById('searchInput');
+      input.value = '';
+      document.getElementById('searchClearBtn').style.display = 'none';
+      applyLocalFilter('');
+      input.focus();
+    }
+
+    function clearSearchFilterVisuals() {
+      document.querySelectorAll('.site-card').forEach(c => c.style.display = 'flex');
+      document.querySelectorAll('.category-section').forEach(s => s.style.display = 'block');
+      document.getElementById('searchStatusBar').style.display = 'none';
+      document.getElementById('noResultsBox').style.display = 'none';
+    }
+
+    // ScrollSpy for Sidebar
+    function bindSidebarScrollSpy() {
+      const links = document.querySelectorAll('.nav-link');
+      const sections = document.querySelectorAll('.category-section');
+
+      window.addEventListener('scroll', () => {
+        let currentId = '';
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(sec => {
+          const top = sec.offsetTop - 120;
+          const height = sec.offsetHeight;
+          if (scrollY >= top && scrollY < top + height) {
+            currentId = sec.getAttribute('data-cat-id');
+          }
+        });
+
+        links.forEach(link => {
+          if (link.getAttribute('data-cat-id') === currentId) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        const btt = document.getElementById('backToTopBtn');
+        if (scrollY > 250) {
+          btt.classList.add('show');
+        } else {
+          btt.classList.remove('show');
+        }
+      });
+    }
+
+    // Custom Bookmarks Management
+    function openAddModal(preselectCat = 'custom') {
+      const modal = document.getElementById('addBookmarkModal');
+      const catSelect = document.getElementById('bmCategory');
+      catSelect.value = preselectCat;
+      document.getElementById('bmTitle').value = '';
+      document.getElementById('bmUrl').value = '';
+      document.getElementById('bmDesc').value = '';
+      document.getElementById('bmTag').value = '';
+      modal.style.display = 'flex';
+      document.getElementById('bmTitle').focus();
+    }
+
+    function closeAddModal() {
+      document.getElementById('addBookmarkModal').style.display = 'none';
+    }
+
+    function handleAddBookmarkSubmit(e) {
+      e.preventDefault();
+      const title = document.getElementById('bmTitle').value.trim();
+      let url = document.getElementById('bmUrl').value.trim();
+      const catId = document.getElementById('bmCategory').value;
+      const desc = document.getElementById('bmDesc').value.trim() || '快捷直达';
+      const tag = document.getElementById('bmTag').value.trim() || '常用';
+
+      if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+      }
+
+      let targetCat = categories.find(c => c.id === catId);
+      if (!targetCat) {
+        targetCat = categories[0];
+      }
+
+      const domain = getDomain(url);
+      const palette = [
+        'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+        'linear-gradient(135deg, #10b981 0%, #047857 100%)',
+        'linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%)',
+        'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+        'linear-gradient(135deg, #ec4899 0%, #be185d 100%)'
+      ];
+      const bg = palette[Math.floor(Math.random() * palette.length)];
+
+      targetCat.items.unshift({
+        title,
+        url,
+        desc,
+        tag,
+        domain,
+        initial: title.slice(0, 1).toUpperCase(),
+        bg
+      });
+
+      saveData();
+      renderApp();
+      closeAddModal();
+      showToast('网站添加成功！');
+    }
+
+    function deleteCustomBookmark(e, index) {
+      e.stopPropagation();
+      if (!confirm('确定要从收藏中删除此网址吗？')) return;
+      const customCat = categories.find(c => c.id === 'custom');
+      if (customCat && customCat.items[index]) {
+        customCat.items.splice(index, 1);
+        saveData();
+        renderApp();
+        showToast('已删除书签');
+      }
+    }
+
+    // Backup & Restore
+    function openDataModal() {
+      document.getElementById('dataModal').style.display = 'flex';
+    }
+
+    function closeDataModal() {
+      document.getElementById('dataModal').style.display = 'none';
+    }
+
+    function exportDataToJson() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(categories, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", dataStr);
+      dlAnchor.setAttribute("download", "拾径导航书签备份_" + new Date().toISOString().slice(0,10) + ".json");
+      document.body.appendChild(dlAnchor);
+      dlAnchor.click();
+      dlAnchor.remove();
+      showToast('已导出备份 JSON 文件！');
+    }
+
+    function importDataFromJson(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const imported = JSON.parse(e.target.result);
+          if (Array.isArray(imported)) {
+            categories = imported;
+            saveData();
+            renderApp();
+            closeDataModal();
+            showToast('书签配置恢复成功！');
+          } else {
+            alert('无效的书签备份格式');
+          }
+        } catch (err) {
+          alert('解析备份文件出错：' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function resetToDefaultData() {
+      if (!confirm('确定要重置所有书签为初始预设吗？自定义书签将被清除。')) return;
+      categories = JSON.parse(JSON.stringify(INITIAL_CATEGORIES));
+      saveData();
+      renderApp();
+      closeDataModal();
+      showToast('已恢复预设书签！');
+    }
+
+    // Close modals on clicking overlay
+    window.addEventListener('click', (e) => {
+      const addModal = document.getElementById('addBookmarkModal');
+      const dataModal = document.getElementById('dataModal');
+      if (e.target === addModal) closeAddModal();
+      if (e.target === dataModal) closeDataModal();
+    });
+
+    // App Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      updateDateGreeting();
+      loadData();
+      renderApp();
+      initSearch();
+
+      document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+      document.getElementById('openAddModalBtn').addEventListener('click', () => openAddModal());
+      document.getElementById('openDataModalBtn').addEventListener('click', openDataModal);
+
+      // Periodically update date
+      setInterval(updateDateGreeting, 60000);
+    });
+  </script>
+</body>
+</html>

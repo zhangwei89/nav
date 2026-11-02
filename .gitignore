@@ -1,0 +1,9 @@
+node_modules/
+*.log
+preview*.png
+extract*.js
+inspect*.js
+print_cat.js
+build_site.js
+test_index.js
+extracted_categories.json
